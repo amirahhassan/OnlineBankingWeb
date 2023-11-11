@@ -1,4 +1,4 @@
-package servlet.main;
+package servlet.pages;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/main")
-public class DefaultServlet extends HttpServlet {
+@WebServlet("/test")
+public class Test extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Your servlet code here to determine the condition
@@ -17,8 +17,7 @@ public class DefaultServlet extends HttpServlet {
 
         if (conditionMet) {
             // Use RequestDispatcher to forward to the specific JSP page
-            System.out.println("gg");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/main.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/test.jsp");
             dispatcher.forward(request, response);
         } else {
             // Handle the condition not being met

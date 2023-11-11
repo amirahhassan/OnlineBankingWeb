@@ -13,8 +13,10 @@ public class UserRepository {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
+
             // save the student objects
             session.persist(user);
+
             // commit transaction
             transaction.commit();
         } catch (Exception e) {

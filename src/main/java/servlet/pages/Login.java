@@ -17,7 +17,7 @@ public class Login extends HttpServlet {
 
         if (conditionMet) {
             // Use RequestDispatcher to forward to the specific JSP page
-            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/login.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/loginIrsyad.jsp");
             dispatcher.forward(request, response);
         } else {
             // Handle the condition not being met

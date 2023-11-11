@@ -9,8 +9,7 @@ public class UserService {
         UserRepository.addNewUser(user);
     }
 
-//    public static void deleteUserById(int id){
-//        System.out.println("inside UserService");
-//        UserRepository.addNewUser(user);
-//    }
+    public static void deleteUserById(int id){
+        UserRepository.deleteUserById(id);
+    }
 }
