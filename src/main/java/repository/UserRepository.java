@@ -3,7 +3,6 @@ package repository;
 import entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 public class UserRepository {

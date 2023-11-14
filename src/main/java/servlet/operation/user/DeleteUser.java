@@ -1,6 +1,5 @@
-package servlet.user;
+package servlet.operation.user;
 
-import entity.User;
 import service.UserService;
 
 import javax.servlet.annotation.WebServlet;
