@@ -67,6 +67,6 @@ public class User {
     @Column(name = "BALANCE")
     private String balance;
 
-    @Column(name = "TIMESTAMP")
+    @Column(name = "TIMESTAMP", nullable = false)
     private LocalDateTime timeStamp;
 }

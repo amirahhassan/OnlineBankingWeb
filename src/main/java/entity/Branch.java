@@ -9,23 +9,23 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "NOTICE")
+@Table(name = "BRANCH")
 @Setter
 @Getter
 @NoArgsConstructor
-public class Notice {
+public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id; // `id` int(11) NOT NULL
+    private int id; // int(11) NOT NULL
 
     @NotNull
     @Column(name = "USERID")
     private String userId; // `userId` varchar(111) NOT NULL
 
     @NotNull
-    @Column(name = "NOTICE")
-    private String notice; // `notice` text NOT NULL
+    @Column(name = "BRANCHNAME")
+    private String branchName; // `notice` text NOT NULL
 
     @Column(name = "TIMESTAMP", nullable = false)
     private LocalDateTime timeStamp; // `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP

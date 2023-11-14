@@ -27,6 +27,7 @@ public class Feedback {
     @Column(name = "USERID")
     private String userId ; // `userId` double NOT NULL
 
-    @Column(name = "TIMESTAMP")
+    @NotNull
+    @Column(name = "TIMESTAMP", nullable = false)
     private LocalDateTime timeStamp; // `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 }
