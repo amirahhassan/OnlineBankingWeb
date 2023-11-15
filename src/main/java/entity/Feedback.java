@@ -25,9 +25,14 @@ public class Feedback {
 
     @NotNull
     @Column(name = "USERID")
-    private String userId ; // `userId` double NOT NULL
+    private String userId ; // `userId` String NOT NULL
 
     @NotNull
     @Column(name = "TIMESTAMP", nullable = false)
     private LocalDateTime timeStamp; // `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+    @PrePersist
+    private void onCreate() {
+        timeStamp = LocalDateTime.now();
+    }
 }

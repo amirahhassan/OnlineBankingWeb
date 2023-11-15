@@ -1,20 +1,19 @@
 package repository;
 
-import entity.UserAccount;
+import entity.Feedback;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
 
-public class UserRepository {
-    public static void addNewUser (UserAccount userAccount){
-        System.out.println("inside UserRepository");
+public class FeedbackRepository {
+    public static void addNewFeedback(Feedback feedback){
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
 
             // save the student objects
-            session.persist(userAccount);
+            session.persist(feedback);
 
             // commit transaction
             transaction.commit();
@@ -26,17 +25,13 @@ public class UserRepository {
         }
     }
 
-    public static void deleteUserById(int id){
+    public static void listAllFeedback(){
+        System.out.println("inside FeedbackRepository");
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
 
-            // Delete a student object
-            UserAccount userAccount = session.get(UserAccount.class, id);
-            if (userAccount != null) {
-                session.delete(userAccount);
-            }
 
             // commit transaction
             transaction.commit();

@@ -27,6 +27,12 @@ public class Notice {
     @Column(name = "NOTICE")
     private String notice; // `notice` text NOT NULL
 
+    @NotNull
     @Column(name = "TIMESTAMP", nullable = false)
     private LocalDateTime timeStamp; // `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+    @PrePersist
+    private void onCreate() {
+        timeStamp = LocalDateTime.now();
+    }
 }

@@ -18,6 +18,10 @@ public class LoginByRoles extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        System.out.println("gg "+ email);
+        System.out.println("gg "+ password);
+        System.out.println("gg "+ userType);
+
         if (conditionMet) {
             // Use RequestDispatcher to forward to the specific JSP page
             if(userType.equals("user")){

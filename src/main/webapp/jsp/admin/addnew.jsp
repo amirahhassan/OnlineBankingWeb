@@ -8,7 +8,7 @@
 </head>
 <body style="background-size: 100%" class="bg-gradient-seconday">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/indexAdmin">
         <img src="images/logo.png" style="object-fit:cover;object-position:center center" width="30" height="30"
              class="d-inline-block align-top" alt="">
         <%= BankInformation.getBankName() %>
@@ -21,12 +21,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link " href="${pageContext.request.contextPath}/indexAdmin">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/indexAdmin">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item "><a class="nav-link" href="maccounts.php">Accounts</a></li>
-            <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/addNewUserAdmin">Add
-                New Account</a></li>
-            <li class="nav-item "><a class="nav-link" href="mfeedback.php">Feedback</a></li>
+            <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/addNewUserAdmin">Add New Account</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/feedbackAdmin">Feedback</a></li>
         </ul>
         <jsp:include page="/jsp/admin/sidebutton.jsp"/>
     </div>

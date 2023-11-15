@@ -6,7 +6,7 @@
 </head>
 <body style="background-size: 100%" class="bg-gradient-seconday">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/indexAdmin">
         <img src="images/logo.png" style="object-fit:cover;object-position:center center" width="30" height="30"
              class="d-inline-block align-top" alt="">
         <%= BankInformation.getBankName() %>
@@ -19,23 +19,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link active" href="${pageContext.request.contextPath}/indexAdmin">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="${pageContext.request.contextPath}/indexAdmin">Home <span
+                        class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item "><a class="nav-link" href="maccounts.php">Accounts</a></li>
-            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/addNewUserAdmin">Add New Account</a></li>
-            <li class="nav-item "><a class="nav-link" href="mfeedback.php">Feedback</a></li>
+            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/addNewUserAdmin">Add New
+                Account</a></li>
+            <li class="nav-item "><a class="nav-link"
+                                     href="${pageContext.request.contextPath}/feedbackAdmin">Feedback</a></li>
         </ul>
         <jsp:include page="/jsp/admin/sidebutton.jsp"/>
     </div>
 </nav>
 <br><br><br>
 <div class="container">
-    <div class="card w-100 text-center shadowBlue">
-        <div class="card-header">
+    <div class="card w-100 shadowBlue">
+        <div class="card-header text-center">
             All accounts
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-sm">
+            <table class="table text-center table-bordered table-sm">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -45,26 +47,26 @@
                     <th scope="col">Current Balance</th>
                     <th scope="col">Account type</th>
                     <th scope="col">Contact</th>
-                    <th scope="col"></th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-      $i=0;
-      $array = $con->query("select * from useraccounts,branch where useraccounts.branch = branch.branchId");
-                if ($array->num_rows > 0)
-                {
-                while ($row = $array->fetch_assoc())
-                {$i++;
-                ?>
+                <%--                <?php--%>
+                <%--      $i=0;--%>
+                <%--      $array = $con->query("select * from useraccounts,branch where useraccounts.branch = branch.branchId");--%>
+                <%--                if ($array->num_rows > 0)--%>
+                <%--                {--%>
+                <%--                while ($row = $array->fetch_assoc())--%>
+                <%--                {$i++;--%>
+                <%--                ?>--%>
                 <tr>
-                    <th scope="row"><?php echo $i ?></th>
-                    <td><?php echo $row['name'] ?></td>
-                    <td><?php echo $row['accountNo'] ?></td>
-                    <td><?php echo $row['branchName'] ?></td>
-                    <td>Rs.<?php echo $row['balance'] ?></td>
-                    <td><?php echo $row['accountType'] ?></td>
-                    <td><?php echo $row['number'] ?></td>
+                    <th scope="row">1</th>
+                    <td>MUAZ</td>
+                    <td>986532326598</td>
+                    <td>SELANGOR</td>
+                    <td>RM 986532.00</td>
+                    <td>SAVING</td>
+                    <td>986532326598</td>
                     <td>
                         <a href="show.php?id=<?php echo $row['id'] ?>" class='btn btn-success btn-sm'
                            data-toggle='tooltip' title="View More info">View</a>
@@ -75,15 +77,13 @@
                     </td>
 
                 </tr>
-                <?php
-        }
-      }
-     ?>
                 </tbody>
             </table>
             <div class="card-footer text-muted">
                 <%= BankInformation.getBankName() %>
             </div>
         </div>
+    </div>
+</div>
 </body>
 </html>

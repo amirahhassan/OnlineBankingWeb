@@ -1,6 +1,12 @@
 package util;
 
+import dto.BranchDto;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BankInformation {
@@ -8,6 +14,36 @@ public class BankInformation {
         return "CatchFlow Bank";
     }
     public static Map<String, String> getBankBranch(){
+//        Transaction transaction = null;
+//
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            // start a transaction
+//            transaction = session.beginTransaction();
+//
+//            // Create and execute a select query
+//            String hql = "SELECT T1.branchName, T1.branchLocation FROM Branch T1"; // Replace YourEntityName with your actual entity class name
+//            Query query = session.createQuery(hql);
+//            List<BranchDto> resultBrnchDtoList = query.list();
+//
+//            // Process the selected data
+//            for (YourEntityName entity : resultList) {
+//                // Access entity attributes as needed
+//            }
+//
+//            // commit transaction
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            e.printStackTrace();
+//        }
+
+
+
+
+
+
         Map<String, String> bankBrnchList = new HashMap<>();
         bankBrnchList.put("PJ", "SELANGOR");
         bankBrnchList.put("SJ", "SELANGOR");

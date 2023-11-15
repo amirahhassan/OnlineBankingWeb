@@ -20,13 +20,19 @@ public class Branch {
     private int id; // int(11) NOT NULL
 
     @NotNull
-    @Column(name = "USERID")
-    private String userId; // `userId` varchar(111) NOT NULL
+    @Column(name = "BRANCHNAME")
+    private String branchName; // `branchName` varchar(111) NOT NULL
 
     @NotNull
-    @Column(name = "BRANCHNAME")
-    private String branchName; // `notice` text NOT NULL
+    @Column(name = "BRANCHLOCATION")
+    private String branchLocation; // `branchLocation` text NOT NULL
 
+    @NotNull
     @Column(name = "TIMESTAMP", nullable = false)
     private LocalDateTime timeStamp; // `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+    @PrePersist
+    private void onCreate() {
+        timeStamp = LocalDateTime.now();
+    }
 }

@@ -1,6 +1,6 @@
 package servlet.operation.user;
 
-import entity.User;
+import entity.UserAccount;
 import service.UserService;
 
 import javax.servlet.annotation.WebServlet;
@@ -26,20 +26,20 @@ public class AddUserAdmin extends HttpServlet {
         String branch = req.getParameter("branch");
 
         System.out.println("inside AddUser");
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
-        user.setEmail(email);
-        user.setCnic(ic);
-        user.setPhoneNumber(contactNumber);
-        user.setAccountType(accountType);
-        user.setCity(city);
-        user.setAddress(address);
-        user.setSourceIncome(sourceIncome);
-        user.setBranch(branch);
-        user.setBalance(deposit);
-        user.setAccountNo(accountNumber);
+        UserAccount userAccount = new UserAccount();
+        userAccount.setName(name);
+        userAccount.setPassword(password);
+        userAccount.setEmail(email);
+        userAccount.setCnic(ic);
+        userAccount.setPhoneNumber(contactNumber);
+        userAccount.setAccountType(accountType);
+        userAccount.setCity(city);
+        userAccount.setAddress(address);
+        userAccount.setSourceIncome(sourceIncome);
+        userAccount.setBranch(branch);
+        userAccount.setBalance(deposit);
+        userAccount.setAccountNo(accountNumber);
 
-        UserService.addNewUser(user);
+        UserService.addNewUser(userAccount);
     }
 }

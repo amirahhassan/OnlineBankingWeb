@@ -3,6 +3,7 @@
 <html>
 <head>
     <jsp:include page="/jsp/libraries.jsp"/>
+    <script src="${pageContext.request.contextPath}/js/user/feedback.js"></script>
 </head>
 <body style="background-size: 100%" class="bg-gradient-seconday">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -32,26 +33,16 @@
             Help Card
         </div>
         <div class="card-body">
-            <form method="POST">
+            <form>
                 <div class="alert alert-success w-50 mx-auto">
                     <h5>Enter your message</h5>
-                    <textarea class="form-control" name="msg" required placeholder="Write your message"></textarea>
-                    <button type="submit" name="send" class="btn btn-primary btn-block btn-sm my-1">Send</button>
+                    <textarea id="msg" class="form-control" required placeholder="Write your message"></textarea>
+                    <button id="buttonSave" type="button" class="btn btn-primary btn-block btn-sm my-1">Send</button>
                 </div>
             </form>
-
             <br>
-
-            <?php
-    if (isset($_POST['send']))
-    {
-      if ($con->query("insert into feedback (message,userId) values ('$_POST[msg]','$_SESSION[userId]')")) {
-            echo "<div class='alert alert-success'>Successfully send</div>";
-            }else
-            echo "<div class='alert alert-danger'>Not sent Error is:".$con->error."</div>";
-            }
-
-            ?>
+            <div id="successNotify" class='alert alert-success'>Successfully send feedback</div>
+            <div id="failNotify" class='alert alert-danger'>Not sent Error</div>
         </div>
         <div class="card-footer text-muted">
             <%= BankInformation.getBankName() %>

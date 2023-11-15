@@ -1,12 +1,12 @@
 package service;
 
-import entity.User;
+import entity.UserAccount;
 import repository.UserRepository;
 
 public class UserService {
-    public static void addNewUser(User user){
+    public static void addNewUser(UserAccount userAccount){
         System.out.println("inside UserService");
-        UserRepository.addNewUser(user);
+        UserRepository.addNewUser(userAccount);
     }
 
     public static void deleteUserById(int id){
