@@ -18,7 +18,7 @@
         <!-- Drop and re-create the database schema on startup -->
         <!-- <property name="hbm2ddl.auto">create-drop</property> -->
         <!-- For initial schema creation -->
-        <!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
+<!--         <property name="hibernate.hbm2ddl.auto">create</property>-->
         <!-- For subsequent runs -->
          <property name="hibernate.hbm2ddl.auto">validate</property>
 
@@ -30,9 +30,12 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
 
-        <mapping class="entity.UserAccount"/>
-        <mapping class="entity.Feedback"/>
-        <mapping class="entity.Notice"/>
         <mapping class="entity.Branch"/>
+        <mapping class="entity.Feedback"/>
+        <mapping class="entity.Login"/>
+        <mapping class="entity.Notice"/>
+        <mapping class="entity.Otheraccounts"/>
+        <mapping class="entity.Transaction"/>
+        <mapping class="entity.UserAccount"/>
     </session-factory>
 </hibernate-configuration>

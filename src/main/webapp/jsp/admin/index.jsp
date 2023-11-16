@@ -1,4 +1,7 @@
 <%@ page import="util.BankInformation" %>
+<%@ page import="service.UserService" %>
+<%@ page import="dto.UserAccount" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -51,22 +54,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <%--                <?php--%>
-                <%--      $i=0;--%>
-                <%--      $array = $con->query("select * from useraccounts,branch where useraccounts.branch = branch.branchId");--%>
-                <%--                if ($array->num_rows > 0)--%>
-                <%--                {--%>
-                <%--                while ($row = $array->fetch_assoc())--%>
-                <%--                {$i++;--%>
-                <%--                ?>--%>
+                <%
+                    List<UserAccount> userAccountList = UserService.listAllUsers();
+                    int numberPosition = 1;
+                    for (UserAccount userAccount : userAccountList) {
+                %>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>MUAZ</td>
-                    <td>986532326598</td>
-                    <td>SELANGOR</td>
-                    <td>RM 986532.00</td>
-                    <td>SAVING</td>
-                    <td>986532326598</td>
+                    <th scope="row"><%= numberPosition %></th>
+                    <td><%= userAccount.getName() %></td>
+                    <td><%= userAccount.getAccountNo() %></td>
+                    <td><%= userAccount.getBranch() %></td>
+                    <td>RM <%= userAccount.getBalance() %></td>
+                    <td><%= userAccount.getAccountType() %></td>
+                    <td><%= userAccount.getPhoneNumber() %></td>
                     <td>
                         <a href="show.php?id=<?php echo $row['id'] ?>" class='btn btn-success btn-sm'
                            data-toggle='tooltip' title="View More info">View</a>
@@ -75,8 +75,11 @@
                         <a href="mindex.php?delete=<?php echo $row['id'] ?>" class='btn btn-danger btn-sm'
                            data-toggle='tooltip' title="Delete this account">Delete</a>
                     </td>
-
                 </tr>
+                <%
+                        numberPosition++;
+                    }
+                %>
                 </tbody>
             </table>
             <div class="card-footer text-muted">

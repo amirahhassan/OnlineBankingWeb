@@ -1,16 +1,22 @@
 <%@ page import="util.BankInformation" %>
+<%@ page import="java.util.List" %>
+<%@ page import="dto.FeedbackAdmin" %>
+<%@ page import="service.FeedbackService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <jsp:include page="/jsp/libraries.jsp"/>
+    <script src="${pageContext.request.contextPath}/js/admin/feedback.js"></script>
 </head>
 <body style="background-size: 100%" class="bg-gradient-seconday">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/indexAdmin">
-        <img src="images/logo.png" style="object-fit:cover;object-position:center center" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="images/logo.png" style="object-fit:cover;object-position:center center" width="30" height="30"
+             class="d-inline-block align-top" alt="">
         <%= BankInformation.getBankName() %>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -19,12 +25,15 @@
             <li class="nav-item ">
                 <a class="nav-link" href="${pageContext.request.contextPath}/indexAdmin">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/addNewUserAdmin">Add New Account</a></li>
-            <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/feedbackAdmin">Feedback</a></li>
+            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/addNewUserAdmin">Add New
+                Account</a></li>
+            <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/feedbackAdmin">Feedback</a>
+            </li>
         </ul>
         <jsp:include page="/jsp/admin/sidebutton.jsp"/>
     </div>
-</nav><br><br><br>
+</nav>
+<br><br><br>
 <div class="container">
     <div class="card w-100 text-center shadowBlue">
         <div class="card-header">
@@ -42,28 +51,22 @@
                 </tr>
                 </thead>
                 <tbody>
-
-<%--                <?php--%>
-<%--      $i=0;--%>
-<%--      $array = $con->query("select * from useraccounts,feedback where useraccounts.id = feedback.userId");--%>
-<%--                if ($array->num_rows > 0)--%>
-<%--                {--%>
-<%--                while ($row = $array->fetch_assoc())--%>
-<%--                {--%>
-<%--                ?>--%>
+                <%
+                    List<FeedbackAdmin> feedbackAdminList = FeedbackService.listAllFeedback();
+                    for (FeedbackAdmin feedbackAdmin : feedbackAdminList) {
+                %>
                 <tr>
-                    <td>MUAZ</td>
-                    <td>986532659832</td>
-                    <td>986532659832</td>
-                    <td>BANK NOT GOOD</td>
+                    <td><%= feedbackAdmin.getAccountNameHolder() %></td>
+                    <td><%= feedbackAdmin.getAccountNo() %></td>
+                    <td><%= feedbackAdmin.getContact() %></td>
+                    <td><%= feedbackAdmin.getMessage() %></td>
                     <td>
-                        <a href="" class='btn btn-danger btn-sm' data-toggle='tooltip' title="Delete this Message">Delete</a>
+                        <a data-id="<%= feedbackAdmin.getId() %>" class='btn btn-danger btn-sm deleteButton' data-toggle='tooltip' title="Delete this Message">Delete</a>
                     </td>
                 </tr>
-<%--                <?php--%>
-<%--        }--%>
-<%--      }--%>
-<%--     ?>--%>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
             <div class="card-footer text-muted">

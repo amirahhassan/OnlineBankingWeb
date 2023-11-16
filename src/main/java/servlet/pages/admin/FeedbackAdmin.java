@@ -1,5 +1,7 @@
 package servlet.pages.admin;
 
+import repository.FeedbackRepository;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
