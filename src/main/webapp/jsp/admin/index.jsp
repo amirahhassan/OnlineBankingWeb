@@ -6,6 +6,7 @@
 <html>
 <head>
     <jsp:include page="/jsp/libraries.jsp"/>
+    <script src="${pageContext.request.contextPath}/js/admin/index.js"></script>
 </head>
 <body style="background-size: 100%" class="bg-gradient-seconday">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -27,8 +28,7 @@
             </li>
             <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/addNewUserAdmin">Add New
                 Account</a></li>
-            <li class="nav-item "><a class="nav-link"
-                                     href="${pageContext.request.contextPath}/feedbackAdmin">Feedback</a></li>
+            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/feedbackAdmin">Feedback</a></li>
         </ul>
         <jsp:include page="/jsp/admin/sidebutton.jsp"/>
     </div>
@@ -68,13 +68,14 @@
                     <td><%= userAccount.getAccountType() %></td>
                     <td><%= userAccount.getPhoneNumber() %></td>
                     <td>
-                        <a href="show.php?id=<?php echo $row['id'] ?>" class='btn btn-success btn-sm'
+                        <a href="${pageContext.request.contextPath}/showUserAccountAdmin?userId=<%= userAccount.getId() %>" class='btn btn-success btn-sm'
                            data-toggle='tooltip' title="View More info">View</a>
-                        <a href="mnotice.php?id=<?php echo $row['id'] ?>" class='btn btn-primary btn-sm'
+                        <a href="${pageContext.request.contextPath}/noticeAdmin?userId=<%= userAccount.getId() %>" class='btn btn-primary btn-sm'
                            data-toggle='tooltip' title="Send notice to this">Send Notice</a>
-                        <a href="mindex.php?delete=<?php echo $row['id'] ?>" class='btn btn-danger btn-sm'
+                        <a href="" class='btn btn-danger btn-sm'
                            data-toggle='tooltip' title="Delete this account">Delete</a>
                     </td>
+
                 </tr>
                 <%
                         numberPosition++;

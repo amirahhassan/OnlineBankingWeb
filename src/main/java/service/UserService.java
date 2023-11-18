@@ -1,5 +1,6 @@
 package service;
 
+import dto.AccountProfile;
 import entity.UserAccount;
 import repository.UserRepository;
 
@@ -7,8 +8,11 @@ import java.util.List;
 
 public class UserService {
     public static void addNewUser(UserAccount userAccount){
-        System.out.println("inside UserService");
         UserRepository.addNewUser(userAccount);
+    }
+
+    public static AccountProfile getUserById(int id){
+        return UserRepository.getUserById(id);
     }
 
     public static void deleteUserById(int id){

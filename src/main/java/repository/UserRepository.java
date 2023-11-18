@@ -1,16 +1,16 @@
 package repository;
 
+import dto.AccountProfile;
 import entity.UserAccount;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
-    public static void addNewUser (UserAccount userAccount){
+    public static void addNewUser(UserAccount userAccount) {
         System.out.println("inside UserRepository");
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -30,7 +30,7 @@ public class UserRepository {
         }
     }
 
-    public static void deleteUserById(int id){
+    public static void deleteUserById(int id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -52,7 +52,7 @@ public class UserRepository {
         }
     }
 
-    public static List<dto.UserAccount> listAllUsers(){
+    public static List<dto.UserAccount> listAllUsers() {
         Transaction transaction = null;
         List<dto.UserAccount> dtoRsltLit = new ArrayList<>();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -85,5 +85,29 @@ public class UserRepository {
             e.printStackTrace();
         }
         return dtoRsltLit;
+    }
+
+    public static AccountProfile getUserById(int id) {
+        Transaction transaction = null;
+        AccountProfile resultDto = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+
+            String sqlQuery = "SELECT T1.name, T1.accountNo, T1.branch, T2.branchLocation, T1.balance, T1.accountType, T1.cnic, T1.city, T1.phoneNumber, T1.address " +
+                    "FROM UserAccount T1, Branch T2 WHERE T1.id =:id AND T1.branch = T2.branchName";
+            resultDto = session.createNativeQuery(sqlQuery, AccountProfile.class)
+                    .setParameter("id", id)
+                    .uniqueResult();
+
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return resultDto;
     }
 }
