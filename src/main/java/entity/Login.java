@@ -33,6 +33,10 @@ public class Login {
     private String type;
 
     @NotNull
+    @Column(name = "ACCOUNTNO")
+    private String accountNo;
+
+    @NotNull
     @Column(name = "TIMESTAMP", nullable = false)
     private LocalDateTime timeStamp; // `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 

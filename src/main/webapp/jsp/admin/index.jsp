@@ -28,15 +28,16 @@
             </li>
             <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/addNewUserAdmin">Add New
                 Account</a></li>
-            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/feedbackAdmin">Feedback</a></li>
+            <li class="nav-item "><a class="nav-link"
+                                     href="${pageContext.request.contextPath}/feedbackAdmin">Feedback</a></li>
         </ul>
         <jsp:include page="/jsp/admin/sidebutton.jsp"/>
     </div>
 </nav>
 <br><br><br>
 <div class="container">
-    <div class="card w-100 shadowBlue">
-        <div class="card-header text-center">
+    <div class="card w-100 text-center shadowBlue">
+        <div class="card-header">
             All accounts
         </div>
         <div class="card-body">
@@ -60,22 +61,30 @@
                     for (UserAccount userAccount : userAccountList) {
                 %>
                 <tr>
-                    <th scope="row"><%= numberPosition %></th>
-                    <td><%= userAccount.getName() %></td>
-                    <td><%= userAccount.getAccountNo() %></td>
-                    <td><%= userAccount.getBranch() %></td>
-                    <td>RM <%= userAccount.getBalance() %></td>
-                    <td><%= userAccount.getAccountType() %></td>
-                    <td><%= userAccount.getPhoneNumber() %></td>
+                    <th scope="row"><%= numberPosition %>
+                    </th>
+                    <td><%= userAccount.getName() %>
+                    </td>
+                    <td><%= userAccount.getAccountNo() %>
+                    </td>
+                    <td><%= userAccount.getBranch() %>
+                    </td>
+                    <td>RM <%= userAccount.getBalance() %>
+                    </td>
+                    <td><%= userAccount.getAccountType() %>
+                    </td>
+                    <td><%= userAccount.getPhoneNumber() %>
+                    </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/showUserAccountAdmin?userId=<%= userAccount.getId() %>" class='btn btn-success btn-sm'
+                        <a href="${pageContext.request.contextPath}/showUserAccountAdmin?userId=<%= userAccount.getId() %>"
+                           class='btn btn-success btn-sm'
                            data-toggle='tooltip' title="View More info">View</a>
-                        <a href="${pageContext.request.contextPath}/noticeAdmin?userId=<%= userAccount.getId() %>" class='btn btn-primary btn-sm'
+                        <a href="${pageContext.request.contextPath}/noticeAdmin?userId=<%= userAccount.getId() %>"
+                           class='btn btn-primary btn-sm'
                            data-toggle='tooltip' title="Send notice to this">Send Notice</a>
-                        <a href="" class='btn btn-danger btn-sm'
+                        <a class='btn btn-danger btn-sm deleteButton' data-id="<%= userAccount.getId() %>"
                            data-toggle='tooltip' title="Delete this account">Delete</a>
                     </td>
-
                 </tr>
                 <%
                         numberPosition++;

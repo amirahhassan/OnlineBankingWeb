@@ -1,17 +1,22 @@
-package servlet.operation.user;
+package servlet.operation.admin;
 
+import com.mysql.cj.log.Log;
+import entity.Login;
 import entity.UserAccount;
 import service.UserService;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet("/addUserAdmin")
 public class AddUserAdmin extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String name = req.getParameter("name");
         String ic = req.getParameter("ic");
         String accountNumber = req.getParameter("accountNumber");
@@ -40,6 +45,19 @@ public class AddUserAdmin extends HttpServlet {
         userAccount.setBalance(deposit);
         userAccount.setAccountNo(accountNumber);
 
-        UserService.addNewUser(userAccount);
+        Login login = new Login();
+        // 0 - stands for normal user
+        // 1 - stands for admin user
+        login.setType("0");
+        login.setAccountNo(accountNumber);
+        login.setPassword(password);
+        login.setEmail(email);
+
+        boolean isSuccess = UserService.addNewUser(userAccount, login);
+        resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
+        if (isSuccess){
+            resp.setStatus(HttpServletResponse.SC_OK);
+        }
     }
 }

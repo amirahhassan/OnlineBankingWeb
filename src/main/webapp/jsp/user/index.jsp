@@ -1,4 +1,7 @@
 <%@ page import="util.BankInformation" %>
+<%@ page import="service.NoticeService" %>
+<%@ page import="java.util.List" %>
+<%@ page import="dto.UserNotice" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,11 +21,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link active" href="${pageContext.request.contextPath}/indexUser">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="${pageContext.request.contextPath}/indexUser">Home <span
+                        class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/accountUser">Accounts</a></li>
-            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/statementUser">Account Statements</a></li>
-            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/transferUser">Funds Transfer</a></li>
+            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/accountUser">Accounts</a>
+            </li>
+            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/statementUser">Account
+                Statements</a></li>
+            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/transferUser">Funds
+                Transfer</a></li>
         </ul>
         <jsp:include page="/jsp/user/sidebutton.jsp"/>
     </div>
@@ -31,23 +38,43 @@
 <div class="row w-100">
     <div class="col" style="padding: 22px;padding-top: 0">
         <div class="jumbotron shadowBlack" style="padding: 25px;min-height: 241px;max-height: 241px">
-            <h4 class="display-5">Welcome to <%= BankInformation.getBankName() %></h4>
+            <h4 class="display-5">Welcome to <%= BankInformation.getBankName() %>
+            </h4>
             <p class="lead alert alert-warning"><b>Latest Notification:</b>
+                    <% List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(1);%>
 
-                <?php
-      $array = $con->query("select * from notice where userId = '$_SESSION[userId]' order by date desc");
-                if ($array->num_rows > 0)
-                {
-                $row = $array->fetch_assoc();
-                // {
-                echo $row['notice'];
-                // }
-                }
-                else
-                echo "
-            <div class='alert alert-info'>Notice box empty</div>
-            ";
-            ?></p>
+
+            </p>
+<%--            <p class="lead alert alert-warning"><b>Latest Notification:</b>--%>
+<%--                    <% List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(1);--%>
+<%--                    if (userNotices.size() > 0){--%>
+<%--                        for (UserNotice userNotice : userNotices) {--%>
+<%--                    %>--%>
+<%--                    <%= userNotice.getMessage() %>--%>
+<%--                    <%--%>
+<%--                        }--%>
+<%--                    }else {--%>
+<%--                        %>--%>
+<%--            <div class='alert alert-info'>Notice box empty</div>--%>
+<%--            <%--%>
+<%--                }--%>
+<%--            %>--%>
+<%--            </p>--%>
+
+<%--            <?php--%>
+<%--      $array = $con->query("select * from notice where userId = '$_SESSION[userId]' order by date desc");--%>
+<%--            if ($array->num_rows > 0)--%>
+<%--            {--%>
+<%--            $row = $array->fetch_assoc();--%>
+<%--            // {--%>
+<%--            echo $row['notice'];--%>
+<%--            // }--%>
+<%--            }--%>
+<%--            else--%>
+<%--            echo "--%>
+<%--            <div class='alert alert-info'>Notice box empty</div>--%>
+<%--            ";--%>
+<%--            ?></p>--%>
 
         </div>
         <div id="carouselExampleIndicators" class="carousel slide my-2 rounded-1 shadowBlack" data-ride="carousel">
@@ -80,7 +107,8 @@
                     <img class="card-img-top" src="images/journal.jpg" style="max-height: 155px;min-height: 155px"
                          alt="Card image cap">
                     <div class="card-body">
-                        <a href="${pageContext.request.contextPath}/accountUser" class="btn btn-outline-info shadow btn-block">Account Summary</a>
+                        <a href="${pageContext.request.contextPath}/accountUser"
+                           class="btn btn-outline-info shadow btn-block">Account Summary</a>
                     </div>
                 </div>
             </div>
@@ -89,7 +117,8 @@
                     <img class="card-img-top" src="images/mtransfer.jpg" alt="Card image cap"
                          style="max-height: 155px;min-height: 155px">
                     <div class="card-body">
-                        <a href="${pageContext.request.contextPath}/transferUser" class="btn btn-outline-info shadow btn-block">Transfer Money</a>
+                        <a href="${pageContext.request.contextPath}/transferUser"
+                           class="btn btn-outline-info shadow btn-block">Transfer Money</a>
                     </div>
                 </div>
             </div>
@@ -100,7 +129,8 @@
                     <img class="card-img-top" src="images/notif.gif" style="max-height: 155px;min-height: 155px"
                          alt="Card image cap">
                     <div class="card-body">
-                        <a href="${pageContext.request.contextPath}/noticeUser" class="btn btn-outline-primary btn-block">Check Notification</a>
+                        <a href="${pageContext.request.contextPath}/noticeUser"
+                           class="btn btn-outline-primary btn-block">Check Notification</a>
                     </div>
                 </div>
             </div>
@@ -109,7 +139,8 @@
                     <img class="card-img-top" src="images/send_mail.gif" alt="Card image cap"
                          style="max-height: 155px;min-height: 155px">
                     <div class="card-body">
-                        <a href="${pageContext.request.contextPath}/feedbackUser" class="btn btn-outline-primary btn-block">Contact Us</a>
+                        <a href="${pageContext.request.contextPath}/feedbackUser"
+                           class="btn btn-outline-primary btn-block">Contact Us</a>
                     </div>
                 </div>
             </div>

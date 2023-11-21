@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountProfile {
+    private String id;
     private String name;
     private String accountNo;
     private String branchName;
