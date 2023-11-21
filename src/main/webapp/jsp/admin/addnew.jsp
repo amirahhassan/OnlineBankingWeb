@@ -33,7 +33,7 @@
 <br>
 <br>
 
-<div id="failSave" class='alert alert-danger'>Failed. Error is:".$con->error."</div>
+<div id="failSave" class='alert alert-danger text-center'>Failed to add account</div>
 <div id="successSave" class='alert alert-info text-center'>Account added Successfully</div>
 
 <div class="container">
@@ -46,18 +46,18 @@
                 <table class="table text-center">
                     <tbody>
                     <tr>
-                        <th class="text-white">Name</th>
-                        <td><input type="text" name="name" id="name" class="form-control input-sm" required></td>
-                        <th class="text-white">IC Number</th>
-                        <td><input type="text" name="cnic" id="cnic" class="form-control input-sm" required></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Name</th>
+                        <td><input type="text" name="name" id="name" class="form-control input-sm upperCase"></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> IC Number</th>
+                        <td><input type="text" name="cnic" id="cnic" class="form-control input-sm"></td>
                     </tr>
                     <tr>
-                        <th class="text-white">Account Number</th>
-                        <td><input type="" name="accountNo" id="accountNo" readonly value="<?php echo time() ?>"
-                                   class="form-control input-sm" required></td>
-                        <th class="text-white">Account Type</th>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Account Number</th>
+                        <td><input type="" name="accountNo" id="accountNo" readonly value="<%= BankInformation.generateAccountNumber() %>"
+                                   class="form-control input-sm"></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Account Type</th>
                         <td>
-                            <select class="form-control input-sm" name="accountType" id="accountType" required>
+                            <select class="form-control input-sm" name="accountType" id="accountType">
                                 <option selected value="">Please Select..</option>
                                 <%
                                     Map<String, String> accountTypeList = BankInformation.getAccountType();
@@ -72,29 +72,29 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-white">City</th>
-                        <td><input type="text" name="city" id="city" class="form-control input-sm" required></td>
-                        <th class="text-white">Address</th>
-                        <td><input type="text" name="address" id="address" class="form-control input-sm" required></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> City</th>
+                        <td><input type="text" name="city" id="city" class="form-control input-sm upperCase"></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Address</th>
+                        <td><input type="text" name="address" id="address" class="form-control input-sm upperCase"></td>
                     </tr>
                     <tr>
-                        <th class="text-white">Email</th>
-                        <td><input type="email" name="email" id="email" class="form-control input-sm" required></td>
-                        <th class="text-white">Password</th>
-                        <td><input type="password" name="password" id="password" class="form-control input-sm" required></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Email</th>
+                        <td><input type="email" name="email" id="email" class="form-control input-sm"></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Password</th>
+                        <td><input type="password" name="password" id="password" class="form-control input-sm"></td>
                     </tr>
                     <tr>
-                        <th class="text-white">Deposit</th>
-                        <td><input type="number" name="balance" id="balance" min="10" class="form-control input-sm" required></td>
-                        <th class="text-white">Source of income</th>
-                        <td><input type="text" name="source" id="source" class="form-control input-sm" required></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Deposit</th>
+                        <td><input type="number" name="balance" id="balance" min="10" class="form-control input-sm"></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Source of income</th>
+                        <td><input type="text" name="source" id="source" class="form-control input-sm upperCase"></td>
                     </tr>
                     <tr>
-                        <th class="text-white">Contact Number</th>
-                        <td><input type="text" name="number" id="number" class="form-control input-sm" required></td>
-                        <th class="text-white">Branch</th>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Contact Number</th>
+                        <td><input type="text" name="number" id="number" class="form-control input-sm"></td>
+                        <th class="text-white"><span style="color: red;">&ast;</span> Branch</th>
                         <td>
-                            <select name="branch" id="branch" required class="form-control input-sm">
+                            <select name="branch" id="branch" class="form-control input-sm">
                                 <option selected value="">Please Select..</option>
                                 <%
                                     Map<String, String> bankBrnchList = BankInformation.getBankBranch();

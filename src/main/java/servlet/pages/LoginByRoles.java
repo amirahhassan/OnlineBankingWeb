@@ -1,5 +1,8 @@
 package servlet.pages;
 
+import repository.UserRepository;
+import service.UserService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,21 +21,23 @@ public class LoginByRoles extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        System.out.println("gg "+ email);
-        System.out.println("gg "+ password);
-        System.out.println("gg "+ userType);
-
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         if (conditionMet) {
             // Use RequestDispatcher to forward to the specific JSP page
-            if(userType.equals("user")){
-                response.getWriter().write(request.getContextPath() + "/indexUser");
+            if(userType.equals("user") && !email.equals("admin@cflobank.com") && !password.equals("123")){
+                Long userExist = UserService.checkUserExist(email, password);
+                if (userExist == 1){
+                    response.setStatus(HttpServletResponse.SC_OK);
+                    response.getWriter().write(request.getContextPath() + "/indexUser");
+                }
             }
-            if(userType.equals("manager")){
+            if(userType.equals("manager") && email.equals("admin@cflobank.com") && password.equals("123")){
+                response.setStatus(HttpServletResponse.SC_OK);
                 response.getWriter().write(request.getContextPath() + "/indexAdmin");
             }
         } else {
             // Handle the condition not being met
-            response.getWriter().println("Condition not met.");
+            response.getWriter().write(request.getContextPath());
         }
     }
 }

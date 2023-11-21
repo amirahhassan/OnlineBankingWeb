@@ -8,8 +8,6 @@ public class BankInformation {
         return "CatchFlow Bank";
     }
     public static Map<String, String> getBankBranch(){
-
-
         Map<String, String> bankBrnchList = new HashMap<>();
         bankBrnchList.put("PJ", "SELANGOR");
         bankBrnchList.put("SJ", "SELANGOR");
@@ -27,5 +25,12 @@ public class BankInformation {
         accountTypeList.put("INV", "INVESTMENT");
         accountTypeList.put("ORG", "ORGANIZATION");
         return accountTypeList;
+    }
+
+    public static long generateAccountNumber(){
+        long startNum = 1;
+        long endNum = 999999;
+        long rand = (int)(Math.random() * (endNum - startNum)) + startNum;
+        return rand;
     }
 }

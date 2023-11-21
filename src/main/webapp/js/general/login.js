@@ -24,16 +24,16 @@ $(document).ready(function(){
                 userType : userType,
                 email : email,
                 password : password
+            }, success: function(data, textStatus, jqXHR) {
+                if (jqXHR.status === 200) {
+                    // Handle success
+                    window.location.href = data;
+                }
             },
-        }).then(
-            function (successResponse) {
-                // Handle success
-                window.location.href = successResponse;
-            },
-            function (xhr, status, error) {
-                // Handle failure
-                alert("Wrong username/password")
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Handle errors
+                alert("Wrong email/password")
             }
-        );
+        })
     });
 });

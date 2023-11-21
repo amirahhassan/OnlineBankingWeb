@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/addUserFeedback")
 public class AddUserFeedback extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        String userMsg = req.getParameter("userMsg");
+        String userMsg = req.getParameter("noticeMessage");
         String userId = req.getParameter("userId");
 
         Feedback feedback = new Feedback();
