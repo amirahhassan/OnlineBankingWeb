@@ -1,5 +1,6 @@
 package service;
 
+import dto.AccountDetail;
 import dto.AccountProfile;
 import entity.Login;
 import entity.UserAccount;
@@ -14,6 +15,10 @@ public class UserService {
 
     public static AccountProfile getUserById(int id){
         return UserRepository.getUserById(id);
+    }
+
+    public static AccountDetail getUserAccountDetailById(int id){
+        return UserRepository.getUserAccountDetailById(id);
     }
 
     public static void deleteUserById(int id){

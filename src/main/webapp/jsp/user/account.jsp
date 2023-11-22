@@ -1,4 +1,6 @@
 <%@ page import="util.BankInformation" %>
+<%@ page import="dto.AccountDetail" %>
+<%@ page import="service.UserService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -31,6 +33,15 @@
         <div class="card-header text-center">
             Your account Information
         </div>
+        <%
+            // Retrieve the parameter
+            String userId = (String) request.getAttribute("userId");
+            AccountDetail accountInformation = UserService.getUserAccountDetailById(1);
+            System.out.println(accountInformation.getAccountNo());
+            System.out.println(accountInformation.getAccountCreated());
+            System.out.println(accountInformation.getBranchCode() );
+            System.out.println(accountInformation.getBranchLocation());
+        %>
         <div class="card-body">
             <table class="table table-striped table-dark w-75 mx-auto">
                 <thead>

@@ -1,5 +1,6 @@
 package repository;
 
+import dto.AccountDetail;
 import dto.AccountProfile;
 import entity.Login;
 import entity.UserAccount;
@@ -7,6 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,6 +134,36 @@ public class UserRepository {
             e.printStackTrace();
         }
         return accountProfile;
+    }
+
+    public static AccountDetail getUserAccountDetailById(int id) {
+
+        AccountDetail accountDetail = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            String hql = "SELECT T1.accountNo, T1.branch, T2.branchLocation,  T1.accountType, T1.timeStamp " +
+                    "FROM UserAccount T1, Branch T2 WHERE T1.id =:id AND T1.branch = T2.branchName";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            Object[] result = (Object[]) query.uniqueResult();
+
+            String accountNo = (String) result[0];
+            String branch = (String) result[1];
+            String branchLocation = (String) result[2];
+            String accountType = (String) result[3];
+            LocalDateTime accountCreated = (LocalDateTime) result[4];
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // Adjust the pattern as needed
+            String formattedAccountCreated = accountCreated.format(formatter);
+
+            accountDetail = new AccountDetail(accountNo, branchLocation, branch, accountType, formattedAccountCreated);
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return accountDetail;
     }
 
     public static Long checkUserExist(String email, String password) {
