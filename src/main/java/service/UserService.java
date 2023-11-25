@@ -24,6 +24,7 @@ public class UserService {
     public static void deleteUserById(int id){
         UserRepository.deleteUserById(id);
     }
+
     public static List<dto.UserAccount> listAllUsers(){
         return UserRepository.listAllUsers();
     }

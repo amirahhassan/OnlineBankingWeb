@@ -41,41 +41,28 @@
             <h4 class="display-5">Welcome to <%= BankInformation.getBankName() %>
             </h4>
             <p class="lead alert alert-warning"><b>Latest Notification:</b>
-                    <% List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(1);%>
-
-
+                    <%
+                    // Retrieve the parameter
+//                    String userId = (String) request.getAttribute("userId");
+                    String userId = "1";
+                    List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(Integer.parseInt(userId));
+                    int countMessage = 1;
+                    if (userNotices.size() > 0){
+                        for (UserNotice userNotice : userNotices) {
+                            if (countMessage <= 3){
+                                %>
+                <br><%= userNotice.getMessage() %>
+                    <%
+                            }
+                            countMessage++;
+                        }
+                    }else {
+                        %>
+            <div class='alert alert-info'>Notice box empty</div>
+            <%
+                }
+            %>
             </p>
-<%--            <p class="lead alert alert-warning"><b>Latest Notification:</b>--%>
-<%--                    <% List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(1);--%>
-<%--                    if (userNotices.size() > 0){--%>
-<%--                        for (UserNotice userNotice : userNotices) {--%>
-<%--                    %>--%>
-<%--                    <%= userNotice.getMessage() %>--%>
-<%--                    <%--%>
-<%--                        }--%>
-<%--                    }else {--%>
-<%--                        %>--%>
-<%--            <div class='alert alert-info'>Notice box empty</div>--%>
-<%--            <%--%>
-<%--                }--%>
-<%--            %>--%>
-<%--            </p>--%>
-
-<%--            <?php--%>
-<%--      $array = $con->query("select * from notice where userId = '$_SESSION[userId]' order by date desc");--%>
-<%--            if ($array->num_rows > 0)--%>
-<%--            {--%>
-<%--            $row = $array->fetch_assoc();--%>
-<%--            // {--%>
-<%--            echo $row['notice'];--%>
-<%--            // }--%>
-<%--            }--%>
-<%--            else--%>
-<%--            echo "--%>
-<%--            <div class='alert alert-info'>Notice box empty</div>--%>
-<%--            ";--%>
-<%--            ?></p>--%>
-
         </div>
         <div id="carouselExampleIndicators" class="carousel slide my-2 rounded-1 shadowBlack" data-ride="carousel">
             <div class="carousel-inner">

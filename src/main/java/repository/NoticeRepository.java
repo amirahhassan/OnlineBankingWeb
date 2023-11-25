@@ -33,32 +33,21 @@ public class NoticeRepository {
     }
 
     public static List<UserNotice> getAllNoticesByUserId(int id) {
-        Transaction transaction = null;
         List<UserNotice> dtoRsltLit = new ArrayList<>();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
-            transaction = session.beginTransaction();
 
             String hql = "SELECT T1.notice FROM Notice T1 WHERE T1.userId =:id ORDER BY T1.timeStamp DESC";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
-            List<Object[]> resultList = query.list();
+            List<String> resultList = query.list();
 
-            for (Object[] result : resultList) {
+            for (String result : resultList) {
                 // Each 'result' array contains the selected fields in the order you specified in the query
                 // Access the fields using indices (0, 1, 2, ...) corresponding to the order in your SELECT statement
-                String userNoticeById = (String) result[0];
-                System.out.println("what is her name "+userNoticeById);
-                UserNotice userNotice = new UserNotice(userNoticeById);
+                UserNotice userNotice = new UserNotice(result);
                 dtoRsltLit.add(userNotice);
             }
-
-            // commit transaction
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
         }
         return dtoRsltLit;

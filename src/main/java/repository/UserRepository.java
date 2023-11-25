@@ -64,12 +64,8 @@ public class UserRepository {
     }
 
     public static List<dto.UserAccount> listAllUsers() {
-        Transaction transaction = null;
         List<dto.UserAccount> dtoRsltLit = new ArrayList<>();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
-            transaction = session.beginTransaction();
-
             String hql = "SELECT T1.id, T1.name, T1.accountNo, T1.branch, T1.balance, T1.accountType, T1.phoneNumber FROM UserAccount T1";
             Query query = session.createQuery(hql);
             List<Object[]> resultList = query.list();
@@ -87,24 +83,15 @@ public class UserRepository {
                 dto.UserAccount userAccount = new dto.UserAccount(accountId, holderName, accountNo, branch, currentBalance, accountType, contact);
                 dtoRsltLit.add(userAccount);
             }
-            // commit transaction
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
         }
         return dtoRsltLit;
     }
 
     public static AccountProfile getUserById(int id) {
-        Transaction transaction = null;
         AccountProfile accountProfile = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
-            transaction = session.beginTransaction();
-
             String hql = "SELECT T1.id, T1.name, T1.accountNo, T1.branch, T2.branchLocation, T1.balance, T1.accountType, T1.cnic, T1.city, T1.phoneNumber, T1.address " +
                     "FROM UserAccount T1, Branch T2 WHERE T1.id =:id AND T1.branch = T2.branchName";
             Query query = session.createQuery(hql);
@@ -124,23 +111,15 @@ public class UserRepository {
             String address = (String) result[10];
 
             accountProfile = new AccountProfile(String.valueOf(accountId), holderName, accountNo, branchCode, branchLocation, balance, accountType, cnic, city, phoneNumber, address);
-
-            // commit transaction
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
         }
         return accountProfile;
     }
 
     public static AccountDetail getUserAccountDetailById(int id) {
-
         AccountDetail accountDetail = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-
             String hql = "SELECT T1.accountNo, T1.branch, T2.branchLocation,  T1.accountType, T1.timeStamp " +
                     "FROM UserAccount T1, Branch T2 WHERE T1.id =:id AND T1.branch = T2.branchName";
             Query query = session.createQuery(hql);
@@ -157,35 +136,22 @@ public class UserRepository {
             String formattedAccountCreated = accountCreated.format(formatter);
 
             accountDetail = new AccountDetail(accountNo, branchLocation, branch, accountType, formattedAccountCreated);
-
-
         } catch (Exception e) {
-
             e.printStackTrace();
         }
         return accountDetail;
     }
 
     public static Long checkUserExist(String email, String password) {
-        Transaction transaction = null;
         Long countUserCheck = 0L;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
-            transaction = session.beginTransaction();
-
             String hql = "SELECT COUNT(*) AS COUNTUSERCHECK FROM Login T1 WHERE T1.email =:email AND T1.password =:password";
             Query query = session.createQuery(hql);
             query.setParameter("email", email);
             query.setParameter("password", password);
 
             countUserCheck = (Long) query.uniqueResult();
-
-            // commit transaction
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
         }
         return countUserCheck;
