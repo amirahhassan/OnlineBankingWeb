@@ -37,35 +37,32 @@
             // Retrieve the parameter
             String userId = (String) request.getAttribute("userId");
             AccountDetail accountInformation = UserService.getUserAccountDetailById(1);
-            System.out.println(accountInformation.getAccountNo());
-            System.out.println(accountInformation.getAccountCreated());
-            System.out.println(accountInformation.getBranchCode() );
-            System.out.println(accountInformation.getBranchLocation());
         %>
+
         <div class="card-body">
             <table class="table table-striped table-dark w-75 mx-auto">
                 <thead>
                 <tr>
                     <td scope="col">Account No.</td>
-                    <th scope="col"><?php echo $userData['accountNo']; ?></th>
+                    <th scope="col"><%= accountInformation.getAccountNo()%></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <th scope="row">Branch</th>
-                    <td><?php echo $userData['branchName']; ?></td>
+                    <td><%= accountInformation.getBranchCode()%></td>
                 </tr>
                 <tr>
                     <th scope="row">Branch Code</th>
-                    <td><?php echo $userData['branchNo']; ?></td>
+                    <td><%= accountInformation.getBranchLocation()%></td>
                 </tr>
                 <tr>
                     <th scope="row">Account Type</th>
-                    <td><?php echo $userData['accountType']; ?></td>
+                    <td><%= accountInformation.getAccountType()%></td>
                 </tr>
                 <tr>
                     <th scope="row">Account Created</th>
-                    <td><?php echo $userData['date']; ?></td>
+                    <td><%= accountInformation.getAccountCreated()%></td>
                 </tr>
                 </tbody>
             </table>
