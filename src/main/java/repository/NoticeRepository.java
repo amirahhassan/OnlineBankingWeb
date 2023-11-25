@@ -35,7 +35,6 @@ public class NoticeRepository {
     public static List<UserNotice> getAllNoticesByUserId(int id) {
         List<UserNotice> dtoRsltLit = new ArrayList<>();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-
             String hql = "SELECT T1.notice FROM Notice T1 WHERE T1.userId =:id ORDER BY T1.timeStamp DESC";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);

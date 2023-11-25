@@ -44,25 +44,25 @@
                 <thead>
                 <tr>
                     <td scope="col">Account No.</td>
-                    <th scope="col"><%= accountInformation.getAccountNo()%></th>
+                    <th scope="col"><%= accountInformation.getAccountNo() %></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <th scope="row">Branch</th>
-                    <td><%= accountInformation.getBranchCode()%></td>
+                    <td><%= accountInformation.getBranchCode() %></td>
                 </tr>
                 <tr>
                     <th scope="row">Branch Code</th>
-                    <td><%= accountInformation.getBranchLocation()%></td>
+                    <td><%= accountInformation.getBranchLocation() %></td>
                 </tr>
                 <tr>
                     <th scope="row">Account Type</th>
-                    <td><%= accountInformation.getAccountType()%></td>
+                    <td><%= accountInformation.getAccountType() %></td>
                 </tr>
                 <tr>
                     <th scope="row">Account Created</th>
-                    <td><%= accountInformation.getAccountCreated()%></td>
+                    <td><%= accountInformation.getAccountCreated() %></td>
                 </tr>
                 </tbody>
             </table>
