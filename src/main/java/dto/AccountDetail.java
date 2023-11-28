@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountDetail {
+    private String id;
     private String accountNo;
     private String branchCode;
     private String branchLocation;
