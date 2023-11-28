@@ -17,4 +17,11 @@ public class UserAccount {
     private String balance;
     private String accountType;
     private String phoneNumber;
+
+    public UserAccount(int id, String name, String accountNo, String balance) {
+        this.id = id;
+        this.name = name;
+        this.accountNo = accountNo;
+        this.balance = balance;
+    }
 }

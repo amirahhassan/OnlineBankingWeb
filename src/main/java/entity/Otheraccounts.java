@@ -1,7 +1,6 @@
 package entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,10 +30,6 @@ public class Otheraccounts {
     @NotNull
     @Column(name = "HOLDERNAME")
     private String holderName;
-
-    @NotNull
-    @Column(name = "BALANCE")
-    private String balance;
 
     @NotNull
     @Column(name = "TIMESTAMP", nullable = false)
