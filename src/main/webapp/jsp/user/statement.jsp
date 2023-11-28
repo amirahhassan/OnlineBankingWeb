@@ -1,4 +1,7 @@
 <%@ page import="util.BankInformation" %>
+<%@ page import="dto.AccountStatement" %>
+<%@ page import="service.TransactionService" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -31,36 +34,55 @@
         <div class="card-header text-center">
             Transaction made against you account
         </div>
+        <%
+            // Retrieve the parameter
+            String userId = (String) request.getAttribute("userId");
+            List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId("1");
+        %>
         <div class="card-body">
             <div id="list-group rounded-0">
-                <?php
-      $array = $con->query("select * from transaction where userId = '$userData[id]' order by date desc");
-                if ($array ->num_rows > 0)
-                {
-                while ($row = $array->fetch_assoc())
-                {
-                if ($row['action'] == 'withdraw')
-                {
-                echo "<div class='list-group-item alert alert-secondary'>You withdraw Rs.$row[debit] from your account at $row[date]</div>";
-                }
-                if ($row['action'] == 'deposit')
-                {
-                echo "<div class='list-group-item alert alert-success'>You deposit Rs.$row[credit] in your account at $row[date]</div>";
-                }
-                if ($row['action'] == 'deduction')
-                {
-                echo "<div class='list-group-item alert alert-danger'>Deduction have been made for  Rs.$row[debit] from your account at $row[date] in case of $row[other]</div>";
-                }
-                if ($row['action'] == 'transfer')
-                {
-                echo "<div class='list-group-item alert alert-warning'>Transfer have been made for  Rs.$row[debit] from your account at $row[date] in  account no.$row[other]</div>";
-                }
+                <%
+                    for (AccountStatement statement : accountStatementList) {
+                        if(statement.getAction().equals("transfer")){
+                %>
+                <div class='list-group-item alert alert-warning'>Transfer have been made for RM <%= statement.getDebit() %> from your account at <%= statement.getTimeStamp() %> in account no <%= statement.getReceiverAccountNumber() %></div>
+                <%
+                } else {
+                %>
+                <div class='text-center'><small class='text-muted'><i>No Transcaction has been made yet.</i></small></div>
+                <%
+                        }
+                    }
+                %>
 
-                }
-                } else{
-                echo "<div class='text-center'><small class='text-muted'><i>No Transcaction has been made yet.</i></small></div>";
-                }
-                ?>
+<%--                <?php--%>
+<%--      $array = $con->query("select * from transaction where userId = '$userData[id]' order by date desc");--%>
+<%--                if ($array ->num_rows > 0)--%>
+<%--                {--%>
+<%--                while ($row = $array->fetch_assoc())--%>
+<%--                {--%>
+<%--                if ($row['action'] == 'withdraw')--%>
+<%--                {--%>
+<%--                echo "<div class='list-group-item alert alert-secondary'>You withdraw Rs.$row[debit] from your account at $row[date]</div>";--%>
+<%--                }--%>
+<%--                if ($row['action'] == 'deposit')--%>
+<%--                {--%>
+<%--                echo "<div class='list-group-item alert alert-success'>You deposit Rs.$row[credit] in your account at $row[date]</div>";--%>
+<%--                }--%>
+<%--                if ($row['action'] == 'deduction')--%>
+<%--                {--%>
+<%--                echo "<div class='list-group-item alert alert-danger'>Deduction have been made for  Rs.$row[debit] from your account at $row[date] in case of $row[other]</div>";--%>
+<%--                }--%>
+<%--                if ($row['action'] == 'transfer')--%>
+<%--                {--%>
+<%--                echo "<div class='list-group-item alert alert-warning'>Transfer have been made for  Rs.$row[debit] from your account at $row[date] in  account no.$row[other]</div>";--%>
+<%--                }--%>
+
+<%--                }--%>
+<%--                } else{--%>
+<%--                echo "<div class='text-center'><small class='text-muted'><i>No Transcaction has been made yet.</i></small></div>";--%>
+<%--                }--%>
+<%--                ?>--%>
             </div>
         </div>
         <div class="card-footer text-muted">
