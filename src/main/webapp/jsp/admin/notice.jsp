@@ -7,7 +7,7 @@
     <jsp:include page="/jsp/libraries.jsp"/>
     <script src="${pageContext.request.contextPath}/js/admin/notice.js"></script>
 </head>
-<body style="background-size: 100%" class="bg-gradient-seconday">
+<body style="background-size: 100%" class="bg-gradient-secondary">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">
         <img src="images/logo.png" style="object-fit:cover;object-position:center center" width="30" height="30"

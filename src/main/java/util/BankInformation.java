@@ -27,6 +27,15 @@ public class BankInformation {
         return accountTypeList;
     }
 
+    public static Map<String, String> getBankNameList(){
+        Map<String, String> bankList = new HashMap<>();
+        bankList.put("MYB", "MAYBANK BANK");
+        bankList.put("CIMB", "CIMB BANK");
+        bankList.put("RHB", "RHB BANK");
+        bankList.put("PB", "PUBLIC BANK");
+        return bankList;
+    }
+
     public static long generateAccountNumber(){
         long startNum = 1;
         long endNum = 999999;
