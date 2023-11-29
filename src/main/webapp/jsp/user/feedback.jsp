@@ -44,7 +44,7 @@
             <div id="successNotify" class='alert alert-success'>Successfully send feedback</div>
             <div id="failNotify" class='alert alert-danger'>Not sent Error</div>
         </div>
-        <div class="card-footer text-muted">
+        <div class="card-footer text-muted text-center">
             <%= BankInformation.getBankName() %>
         </div>
     </div>

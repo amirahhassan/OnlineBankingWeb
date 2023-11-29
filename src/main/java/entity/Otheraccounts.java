@@ -28,6 +28,10 @@ public class Otheraccounts {
     private String bankName;
 
     @NotNull
+    @Column(name = "BALANCE")
+    private String balance;
+
+    @NotNull
     @Column(name = "HOLDERNAME")
     private String holderName;
 

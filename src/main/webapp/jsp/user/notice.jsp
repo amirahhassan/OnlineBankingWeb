@@ -10,10 +10,12 @@
 <body style="background-size: 100%" class="bg-gradient-secondary">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="">
-        <img src="images/logo.png" style="object-fit:cover;object-position:center center" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="images/logo.png" style="object-fit:cover;object-position:center center" width="30" height="30"
+             class="d-inline-block align-top" alt="">
         <%= BankInformation.getBankName() %>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -22,13 +24,17 @@
             <li class="nav-item ">
                 <a class="nav-link" href="${pageContext.request.contextPath}/indexUser">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/accountUser">Accounts</a></li>
-            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/statementUser">Account Statements</a></li>
-            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/transferUser">Funds Transfer</a></li>
+            <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/accountUser">Accounts</a>
+            </li>
+            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/statementUser">Account
+                Statements</a></li>
+            <li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/transferUser">Funds
+                Transfer</a></li>
         </ul>
         <jsp:include page="/jsp/user/sidebutton.jsp"/>
     </div>
-</nav><br><br><br>
+</nav>
+<br><br><br>
 <div class="container">
     <div class="card  w-75 mx-auto">
         <div class="card-header text-center">
@@ -38,30 +44,23 @@
             <%
                 // Retrieve the parameter
 //                    String userId = (String) request.getAttribute("userId");
-                String userId = "6";
+                String userId = "1";
                 List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(Integer.parseInt(userId));
-                for (UserNotice userNotice : userNotices) {
+
+                if (userNotices.size() > 0) {
+                    for (UserNotice userNotice : userNotices) {
             %>
-
-
-<%--            <?php--%>
-<%--      $array = $con->query("select * from notice where userId = '$_SESSION[userId]' order by date desc");--%>
-<%--            if ($array->num_rows > 0)--%>
-<%--            {--%>
-<%--            while ($row = $array->fetch_assoc())--%>
-<%--            {--%>
-<%--            echo "<div class='alert alert-success'>$row[notice]</div>";--%>
-<%--            }--%>
-<%--            }--%>
-<%--            else--%>
-<%--            echo "<div class='alert alert-info'><%= userNotice.getMessage() %></div>";--%>
-<%--            ?>--%>
-            <div class='alert alert-info'><%= userNotice.getMessage() %></div>
+                <div class='alert alert-info'><%= userNotice.getMessage() %></div>
             <%
-            }
+                    }
+            } else {
+            %>
+            <div class='alert alert-info'>Notice box empty</div>
+            <%
+                }
             %>
         </div>
-        <div class="card-footer text-muted">
+        <div class="card-footer text-muted text-center">
             <%= BankInformation.getBankName() %>
         </div>
     </div>

@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class Transaction {
+    @ManyToOne
+    @JoinColumn(name = "BENEID", referencedColumnName = "ID")
+    private Otheraccounts otherAccount;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,19 +29,10 @@ public class Transaction {
     private String action;
 
     @NotNull
-    @Column(name = "CREDIT")
-    private String credit;
-
-    @NotNull
     @Column(name = "DEBIT")
     private String debit;
 
-    @NotNull
-    @Column(name = "BALANCE")
-    private String balance;
-
-    @NotNull
-    @Column(name = "BENEID")
+    @Column(name = "BENEID", insertable = false, updatable = false)
     private String beneId;
 
     @NotNull

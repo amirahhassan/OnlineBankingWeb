@@ -66,7 +66,6 @@ $(document).ready(function () {
             return; // Stop here, don't proceed further
         }
 
-
         // Validate phone number format (accepts only numeric values)
         let phoneRegex = /^\d+$/;
         if (!phoneRegex.test(contactNumber)) {

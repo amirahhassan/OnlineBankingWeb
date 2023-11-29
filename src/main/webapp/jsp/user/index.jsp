@@ -51,7 +51,7 @@
                         for (UserNotice userNotice : userNotices) {
                             if (countMessage <= 3){
                                 %>
-                <br><%= userNotice.getMessage() %>
+                <br><%= countMessage %>. <%= userNotice.getMessage() %>
                     <%
                             }
                             countMessage++;

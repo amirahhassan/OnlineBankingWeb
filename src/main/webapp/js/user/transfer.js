@@ -41,8 +41,6 @@ $(document).ready(function () {
         let action = 'transfer';
 
         if ($("#beneficiaryAccountNo").val().length > 0 && $("#amountTransfer").val().length > 0 && $('#bankSelect').val() != '' && $('#beneficiaryAccountName').val() != '') {
-            alert("success bro")
-
             $.ajax({
                 type: "POST",
                 url: "addFundTransfer",
@@ -54,27 +52,25 @@ $(document).ready(function () {
                     userId: userId,
                     beneficiaryAccountName: beneficiaryAccountName,
                 },
-            }).then(
-                function (successResponse) {
-                    // Handle success
-                    $("#transferForm").show();
+                success: function (data, textStatus, jqXHR) {
+                    if (jqXHR.status === 200) {
+                        // Handle success
+                        alert("Successful transfer")
+                        setTimeout(function(){
+                            window.location.href = window.location.href;
+                        }, 3000);
+                    }
                 },
-                function (xhr, status, error) {
-                    // Handle failure
-                    $("#transferForm").show();
-                    // alert("No account number exists in record")
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // Handle errors
+                    alert("Unsuccessful transfer. Please try again later")
+                    setTimeout(function(){
+                        window.location.href = window.location.href;
+                    }, 3000);
                 }
-            );
+            })
         } else {
             alert('Please fill in all required fields.');
         }
-        // setTimeout(function(){
-        //     $("#failNotify, #successNotify").hide();
-        // }, 3000);
-
-        // }else {
-        //     $("#transferForm").hide();
-        //     alert("Enter account number");
-        // }
     });
 });

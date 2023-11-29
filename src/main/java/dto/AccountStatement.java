@@ -9,10 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountStatement {
-
     private String action;
     private String debit;
     private String timeStamp;
     private String receiverAccountNumber;
-
 }

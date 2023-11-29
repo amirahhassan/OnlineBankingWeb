@@ -2,6 +2,8 @@
 <%@ page import="dto.UserAccount" %>
 <%@ page import="service.TransactionService" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="dto.AccountStatement" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -52,19 +54,23 @@
             <div class='alert alert-success w-50 mx-auto'>
                 <form>
                     Account No.
-                    <input type='text' value='<%= userAccount.getAccountNo() %>' id="senderAccountNo" name='senderAccountNo' class='form-control ' readonly required>
+                    <input type='text' value='<%= userAccount.getAccountNo() %>' id="senderAccountNo"
+                           name='senderAccountNo' class='form-control ' readonly required>
 
                     Account Holder Name.
-                    <input type='text' class='form-control' value='<%= userAccount.getName() %>'  readonly required>
+                    <input type='text' class='form-control' value='<%= userAccount.getName() %>' readonly required>
 
                     Account Holder Bank Name.
-                    <input type='text' class='form-control' value='<%= BankInformation.getBankName() %>' readonly required>
+                    <input type='text' class='form-control' value='<%= BankInformation.getBankName() %>' readonly
+                           required>
 
                     Beneficiary Account No.
-                    <input type='text' id="beneficiaryAccountNo" name='beneficiaryAccountNo' class='form-control' required>
+                    <input type='text' id="beneficiaryAccountNo" name='beneficiaryAccountNo' class='form-control'
+                           required>
 
                     Beneficiary Account Holder Name.
-                    <input type='text' id="beneficiaryAccountName" name='beneficiaryAccountName' class='form-control' required>
+                    <input type='text' id="beneficiaryAccountName" name='beneficiaryAccountName' class='form-control'
+                           required>
 
                     Beneficiary Bank Name.
                     <select name="bankSelect" id="bankSelect" class="form-control input-sm" required>
@@ -81,10 +87,13 @@
                     </select>
 
                     Enter Amount for transfer.
-                    <input type='text' id="amountTransfer" name='amount' class='form-control' min='1' max='<%= userAccount.getBalance() %>' required>
+                    <input type='text' id="amountTransfer" name='amount' class='form-control' min='1'
+                           max='<%= userAccount.getBalance() %>' required>
 
                     <div class="text-center">
-                        <button type="button" id="transfer" name='transfer' class='btn btn-primary btn-bloc btn-sm my-1'>Transfer</button>
+                        <button type="button" id="transfer" name='transfer'
+                                class='btn btn-primary btn-bloc btn-sm my-1'>Transfer
+                        </button>
                     </div>
                 </form>
             </div>
@@ -93,60 +102,29 @@
             <h5>Transfer History</h5>
             <div id="list-group rounded-0">
                 <%
-                    int i = 0;
+                    List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId("1");
+                    int stopperCheck = 0;
 
-                    if (i == 1) {
-
-                    } else if (i == 2) {
+                    if (accountStatementList.size() > 0) {
+                        for (AccountStatement statement : accountStatementList) {
+                            if (statement.getAction().equals("transfer")) {
+                                stopperCheck++;
+                                if (stopperCheck == 1) {
                 %>
-                <div class='list-group-item list-group-item-action bg-gradient-info'>Transfer have been made for
-                    Rs.$row[debit] from your account at $row[date] in account no.$row[other]
+                <div class='list-group-item alert alert-warning'>Transfer have been made for
+                    RM <%= statement.getDebit() %> from your account at <%= statement.getTimeStamp() %> in account
+                    no <%= statement.getReceiverAccountNumber() %>
                 </div>
-
                 <%
-                } else {
+                                }
+                            }
+                        }
+                    } else{
                 %>
-
                 <div class='list-group-item list-group-item-action text-muted'>You have made no transfer yet.</div>
-
                 <%
-
                     }
-
-
                 %>
-                <%--                <?php--%>
-                <%--    if (isset($_POST['transferSelf']))--%>
-                <%--    {--%>
-                <%--      $amount = $_POST['amount'];--%>
-                <%--      setBalance($amount,'debit',$userData['accountNo']);--%>
-                <%--      setBalance($amount,'credit',$_POST['otherNo']);--%>
-                <%--      makeTransaction('transfer',$amount,$_POST['otherNo']);--%>
-                <%--&lt;%&ndash;      echo "<script>alert('Transfer Successfull');window.location.href='transfer.php'</script>";&ndash;%&gt;--%>
-                <%--                }--%>
-                <%--                if (isset($_POST['transfer']))--%>
-                <%--                {--%>
-                <%--                $amount = $_POST['amount'];--%>
-                <%--                setBalance($amount,'debit',$userData['accountNo']);--%>
-                <%--                makeTransaction('transfer',$amount,$_POST['otherNo']);--%>
-                <%--                echo "<script>alert('Transfer Successfull');window.location.href='transfer.php'</script>";--%>
-                <%--                }--%>
-                <%--                $array = $con->query("select * from transaction where userId = '$userData[id]' AND action = 'transfer' order by date desc");--%>
-                <%--                if ($array ->num_rows > 0)--%>
-                <%--                {--%>
-                <%--                while ($row = $array->fetch_assoc())--%>
-                <%--                {--%>
-                <%--                if ($row['action'] == 'transfer')--%>
-                <%--                {--%>
-                <%--                echo "<div class='list-group-item list-group-item-action bg-gradient-info'>Transfer have been made for  Rs.$row[debit] from your account at $row[date] in  account no.$row[other]</div>";--%>
-                <%--                }--%>
-
-                <%--                }--%>
-                <%--                }--%>
-                <%--                else--%>
-                <%--                echo "<div class='list-group-item list-group-item-action text-muted'>You have made no transfer yet.</div>";--%>
-                <%--                ?>--%>
-
             </div>
         </div>
         <div class="card-footer text-muted text-center">

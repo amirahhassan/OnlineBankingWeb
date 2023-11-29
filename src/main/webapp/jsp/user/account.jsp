@@ -67,7 +67,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="card-footer text-muted">
+        <div class="card-footer text-muted text-center">
             <%= BankInformation.getBankName() %>
         </div>
     </div>
