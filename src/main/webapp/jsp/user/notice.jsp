@@ -1,4 +1,7 @@
 <%@ page import="util.BankInformation" %>
+<%@ page import="dto.UserNotice" %>
+<%@ page import="java.util.List" %>
+<%@ page import="service.NoticeService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -32,18 +35,31 @@
             Notification from Bank
         </div>
         <div class="card-body">
-            <?php
-      $array = $con->query("select * from notice where userId = '$_SESSION[userId]' order by date desc");
-            if ($array->num_rows > 0)
-            {
-            while ($row = $array->fetch_assoc())
-            {
-            echo "<div class='alert alert-success'>$row[notice]</div>";
+            <%
+                // Retrieve the parameter
+//                    String userId = (String) request.getAttribute("userId");
+                String userId = "6";
+                List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(Integer.parseInt(userId));
+                for (UserNotice userNotice : userNotices) {
+            %>
+
+
+<%--            <?php--%>
+<%--      $array = $con->query("select * from notice where userId = '$_SESSION[userId]' order by date desc");--%>
+<%--            if ($array->num_rows > 0)--%>
+<%--            {--%>
+<%--            while ($row = $array->fetch_assoc())--%>
+<%--            {--%>
+<%--            echo "<div class='alert alert-success'>$row[notice]</div>";--%>
+<%--            }--%>
+<%--            }--%>
+<%--            else--%>
+<%--            echo "<div class='alert alert-info'><%= userNotice.getMessage() %></div>";--%>
+<%--            ?>--%>
+            <div class='alert alert-info'><%= userNotice.getMessage() %></div>
+            <%
             }
-            }
-            else
-            echo "<div class='alert alert-info'>Notice box empty</div>";
-            ?>
+            %>
         </div>
         <div class="card-footer text-muted">
             <%= BankInformation.getBankName() %>
