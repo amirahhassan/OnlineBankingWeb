@@ -120,23 +120,22 @@ public class UserRepository {
     public static AccountDetail getUserAccountDetailById(int id) {
         AccountDetail accountDetail = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "SELECT T1.id, T1.accountNo, T1.branch, T2.branchLocation,  T1.accountType, T1.timeStamp " +
+            String hql = "SELECT T1.accountNo, T1.branch, T2.branchLocation,  T1.accountType, T1.timeStamp " +
                     "FROM UserAccount T1, Branch T2 WHERE T1.id =:id AND T1.branch = T2.branchName";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
             Object[] result = (Object[]) query.uniqueResult();
 
-            int accountId = (Integer) result[0];
-            String accountNo = (String) result[1];
-            String branch = (String) result[2];
-            String branchLocation = (String) result[3];
-            String accountType = (String) result[4];
-            LocalDateTime accountCreated = (LocalDateTime) result[5];
+            String accountNo = (String) result[0];
+            String branch = (String) result[1];
+            String branchLocation = (String) result[2];
+            String accountType = (String) result[3];
+            LocalDateTime accountCreated = (LocalDateTime) result[4];
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // Adjust the pattern as needed
             String formattedAccountCreated = accountCreated.format(formatter);
 
-            accountDetail = new AccountDetail(String.valueOf(accountId),accountNo, branchLocation, branch, accountType, formattedAccountCreated);
+            accountDetail = new AccountDetail(accountNo, branchLocation, branch, accountType, formattedAccountCreated);
         } catch (Exception e) {
             e.printStackTrace();
         }
