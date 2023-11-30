@@ -9,7 +9,7 @@ $(document).ready(function(){
                 url: "addUserFeedback",
                 data: {
                     userMsg : msg,
-                    userId : "12",
+                    userId : "5",
                 },
             }).then(
                 function (successResponse) {
