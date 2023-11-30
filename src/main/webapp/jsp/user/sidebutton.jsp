@@ -1,8 +1,8 @@
 <%@ page import="service.TransactionService" %>
 <%
     // Retrieve the parameter
-//  String userId = (String) request.getAttribute("userId");
-    String amountBalanceByUserId = TransactionService.getBalanceByUserId(Integer.parseInt("1"));
+    Integer uuId = (Integer) session.getAttribute("uuId");
+    String amountBalanceByUserId = TransactionService.getBalanceByUserId(uuId);
 %>
 <form class="form-inline my-2 my-lg-0">
     <a href="" class="btn btn-outline-primary" data-toggle="tooltip" title="Your current Account Balance">Account Balance : RM <%= amountBalanceByUserId %></a>

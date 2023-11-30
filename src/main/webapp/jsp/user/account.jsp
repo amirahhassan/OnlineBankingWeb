@@ -35,8 +35,8 @@
         </div>
         <%
             // Retrieve the parameter
-            String userId = (String) request.getAttribute("userId");
-            AccountDetail accountInformation = UserService.getUserAccountDetailById(1);
+            Integer uuId = (Integer) session.getAttribute("uuId");
+            AccountDetail accountInformation = UserService.getUserAccountDetailById(uuId);
         %>
 
         <div class="card-body">

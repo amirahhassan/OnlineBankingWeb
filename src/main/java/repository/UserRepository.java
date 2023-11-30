@@ -156,4 +156,19 @@ public class UserRepository {
         }
         return countUserCheck;
     }
+
+    public static Integer getUserId(String email, String password) {
+        Integer countUserCheck = 0;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT T1.id FROM Login T1 WHERE T1.email =:email AND T1.password =:password";
+            Query query = session.createQuery(hql);
+            query.setParameter("email", email);
+            query.setParameter("password", password);
+
+            countUserCheck = (Integer) query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countUserCheck;
+    }
 }

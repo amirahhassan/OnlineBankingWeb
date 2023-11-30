@@ -45,9 +45,8 @@
         </div>
         <%
             // Retrieve the parameter
-//            String userId = (String) request.getAttribute("userId");
-            String userId = "1";
-            UserAccount userAccount = TransactionService.getUserAccountBankInfo(userId);
+            Integer uuId = (Integer) session.getAttribute("uuId");
+            UserAccount userAccount = TransactionService.getUserAccountBankInfo(String.valueOf(uuId));
         %>
         <input type='text' value='<%= userAccount.getId() %>' id="userId" name='userId' hidden>
         <div class="card-body">
@@ -102,7 +101,7 @@
             <h5>Transfer History</h5>
             <div id="list-group rounded-0">
                 <%
-                    List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId("1");
+                    List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId(String.valueOf(uuId));
                     int stopperCheck = 0;
 
                     if (accountStatementList.size() > 0) {

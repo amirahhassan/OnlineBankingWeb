@@ -11,12 +11,12 @@
 <?php echo $error ?>
 <br>
 <div id="accordion" role="tablist" class="w-25 float-right shadowBlack" style="margin-right: 222px">
-    <br><h4 class="text-center">Select Your Session</h4>
+    <br><h4 class="text-center">Welcome Home</h4>
     <div class="card rounded-0">
         <div class="card-header" role="tab" id="headingOne">
             <h5 class="mb-0">
                 <a style="text-decoration: none;" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <button class="btn btn-outline-primary btn-block">User Login</button>
+                    <button class="btn btn-outline-primary btn-block">Click to Login</button>
                 </a>
             </h5>
         </div>
@@ -30,24 +30,24 @@
             </div>
         </div>
     </div>
-    <div class="card rounded-0">
-        <div class="card-header" role="tab" id="headingTwo">
-            <h5 class="mb-0">
-                <a class="collapsed btn btn-outline-primary btn-block" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Manager Login
-                </a>
-            </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
-                <form>
-                    <input type="email" id="managerLoginEmail" name="email" class="form-control" required placeholder="Enter Email">
-                    <input type="password" id="managerLoginPassword" name="password" class="form-control" required placeholder="Enter Password">
-                    <button type="button" id="managerLogin" data-type="manager" class="btn btn-primary btn-block btn-sm my-1" name="managerLogin">Enter </button>
-                </form>
-            </div>
-        </div>
-    </div>
+<%--    <div class="card rounded-0">--%>
+<%--        <div class="card-header" role="tab" id="headingTwo">--%>
+<%--            <h5 class="mb-0">--%>
+<%--                <a class="collapsed btn btn-outline-primary btn-block" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">--%>
+<%--                    Manager Login--%>
+<%--                </a>--%>
+<%--            </h5>--%>
+<%--        </div>--%>
+<%--        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">--%>
+<%--            <div class="card-body">--%>
+<%--                <form>--%>
+<%--                    <input type="email" id="managerLoginEmail" name="email" class="form-control" required placeholder="Enter Email">--%>
+<%--                    <input type="password" id="managerLoginPassword" name="password" class="form-control" required placeholder="Enter Password">--%>
+<%--                    <button type="button" id="managerLogin" data-type="manager" class="btn btn-primary btn-block btn-sm my-1" name="managerLogin">Enter </button>--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 </div>
 </body>
 </html>
