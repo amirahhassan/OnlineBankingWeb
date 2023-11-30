@@ -43,9 +43,8 @@
         <div class="card-body">
             <%
                 // Retrieve the parameter
-//                    String userId = (String) request.getAttribute("userId");
-                String userId = "1";
-                List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(Integer.parseInt(userId));
+                Integer uuId = (Integer) session.getAttribute("uuId");
+                List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(uuId);
 
                 if (userNotices.size() > 0) {
                     for (UserNotice userNotice : userNotices) {

@@ -42,8 +42,8 @@
         </div>
         <%
             // Retrieve the parameter
-            String userId = (String) request.getAttribute("userId");
-            List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId("5");
+            Integer uuId = (Integer) session.getAttribute("uuId");
+            List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId(String.valueOf(uuId));
             int stopperCheck = 0;
         %>
         <div class="card-body">

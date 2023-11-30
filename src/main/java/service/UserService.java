@@ -6,10 +6,17 @@ import entity.Login;
 import entity.UserAccount;
 import repository.UserRepository;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class UserService {
     public static boolean addNewUser(UserAccount userAccount, Login login){
+        String latestBalance = userAccount.getBalance();
+
+        // Format the result to always have two decimal places
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        String formattedBalance = decimalFormat.format(latestBalance);
+        userAccount.setBalance(formattedBalance);
         return UserRepository.addNewUser(userAccount, login);
     }
 
@@ -31,5 +38,9 @@ public class UserService {
 
     public static Long checkUserExist(String email, String password) {
         return UserRepository.checkUserExist(email, password);
+    }
+
+    public static Integer getUserId(String email, String password) {
+        return UserRepository.getUserId(email, password);
     }
 }
