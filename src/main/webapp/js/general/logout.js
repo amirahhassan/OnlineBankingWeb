@@ -3,5 +3,4 @@ function logout(event){
 
     window.location.href="/"
 }
-
 document.getElementById("Logout").addEventListener("click", logout);
