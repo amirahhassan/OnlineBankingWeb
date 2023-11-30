@@ -36,7 +36,7 @@
         <%
             // Retrieve the parameter
             String userId = (String) request.getAttribute("userId");
-            AccountDetail accountInformation = UserService.getUserAccountDetailById(1);
+            AccountDetail accountInformation = UserService.getUserAccountDetailById(6);
         %>
 
         <div class="card-body">

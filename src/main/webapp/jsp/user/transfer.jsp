@@ -46,7 +46,7 @@
         <%
             // Retrieve the parameter
 //            String userId = (String) request.getAttribute("userId");
-            String userId = "1";
+            String userId = "5";
             UserAccount userAccount = TransactionService.getUserAccountBankInfo(userId);
         %>
         <input type='text' value='<%= userAccount.getId() %>' id="userId" name='userId' hidden>
@@ -102,7 +102,7 @@
             <h5>Transfer History</h5>
             <div id="list-group rounded-0">
                 <%
-                    List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId("1");
+                    List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId("5");
                     int stopperCheck = 0;
 
                     if (accountStatementList.size() > 0) {

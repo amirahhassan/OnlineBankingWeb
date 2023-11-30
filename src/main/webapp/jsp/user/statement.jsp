@@ -43,7 +43,7 @@
         <%
             // Retrieve the parameter
             String userId = (String) request.getAttribute("userId");
-            List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId("1");
+            List<AccountStatement> accountStatementList = TransactionService.getAccountStatementByUserId("5");
             int stopperCheck = 0;
         %>
         <div class="card-body">
