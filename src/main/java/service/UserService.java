@@ -10,29 +10,23 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class UserService {
-    public static boolean addNewUser(UserAccount userAccount, Login login){
-        String latestBalance = userAccount.getBalance();
-
-        // Format the result to always have two decimal places
-        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-        String formattedBalance = decimalFormat.format(latestBalance);
-        userAccount.setBalance(formattedBalance);
+    public static boolean addNewUser(UserAccount userAccount, Login login) {
         return UserRepository.addNewUser(userAccount, login);
     }
 
-    public static AccountProfile getUserById(int id){
+    public static AccountProfile getUserById(int id) {
         return UserRepository.getUserById(id);
     }
 
-    public static AccountDetail getUserAccountDetailById(int id){
+    public static AccountDetail getUserAccountDetailById(int id) {
         return UserRepository.getUserAccountDetailById(id);
     }
 
-    public static void deleteUserById(int id){
+    public static void deleteUserById(int id) {
         UserRepository.deleteUserById(id);
     }
 
-    public static List<dto.UserAccount> listAllUsers(){
+    public static List<dto.UserAccount> listAllUsers() {
         return UserRepository.listAllUsers();
     }
 

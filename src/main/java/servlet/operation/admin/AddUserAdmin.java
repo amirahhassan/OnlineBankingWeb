@@ -30,7 +30,6 @@ public class AddUserAdmin extends HttpServlet {
         String contactNumber = req.getParameter("contactNumber");
         String branch = req.getParameter("branch");
 
-        System.out.println("inside AddUser");
         UserAccount userAccount = new UserAccount();
         userAccount.setName(name);
         userAccount.setPassword(password);

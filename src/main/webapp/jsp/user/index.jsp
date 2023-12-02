@@ -44,6 +44,10 @@
                     <%
                     // Retrieve the parameter
                     Integer uuId = (Integer) session.getAttribute("uuId");
+                    // Check if the uuId is not null
+                    if (uuId == null) {
+                        System.out.println("GGG BRO");
+                    }
                     List<UserNotice> userNotices = NoticeService.getAllNoticesByUserId(uuId);
                     int countMessage = 1;
                     if (userNotices.size() > 0){

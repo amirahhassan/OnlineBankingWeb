@@ -25,29 +25,11 @@
                 <form>
                     <input type="email" id="userLoginEmail" name="email" class="form-control" required placeholder="Enter Email">
                     <input type="password" id="userLoginPassword" name="password" class="form-control" required placeholder="Enter Password">
-                    <button type="button" id="userLogin" data-type="user" class="btn btn-primary btn-block btn-sm my-1" name="userLogin">Enter </button>
+                    <button type="button" id="userLogin" class="btn btn-primary btn-block btn-sm my-1">Enter</button>
                 </form>
             </div>
         </div>
     </div>
-<%--    <div class="card rounded-0">--%>
-<%--        <div class="card-header" role="tab" id="headingTwo">--%>
-<%--            <h5 class="mb-0">--%>
-<%--                <a class="collapsed btn btn-outline-primary btn-block" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">--%>
-<%--                    Manager Login--%>
-<%--                </a>--%>
-<%--            </h5>--%>
-<%--        </div>--%>
-<%--        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">--%>
-<%--            <div class="card-body">--%>
-<%--                <form>--%>
-<%--                    <input type="email" id="managerLoginEmail" name="email" class="form-control" required placeholder="Enter Email">--%>
-<%--                    <input type="password" id="managerLoginPassword" name="password" class="form-control" required placeholder="Enter Password">--%>
-<%--                    <button type="button" id="managerLogin" data-type="manager" class="btn btn-primary btn-block btn-sm my-1" name="managerLogin">Enter </button>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
 </div>
 </body>
 </html>

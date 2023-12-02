@@ -50,6 +50,10 @@ public class LoginByRoles extends HttpServlet {
 
         HttpSession session=request.getSession(true);
 
+        // Set session expiration time to 1 minutes (in seconds)
+        session.setMaxInactiveInterval(60);
+
+
         if (conditionMet) {
             // Use RequestDispatcher to forward to the specific JSP page
             if (!email.equals("admin@cflobank.com") && !password.equals("123")) {
